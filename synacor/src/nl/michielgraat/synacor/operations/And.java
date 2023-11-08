@@ -34,15 +34,15 @@ public class And implements Operation {
         int a = getParams().get(0);
         int b = vm.getStorage().read(getParams().get(1));
         int c = vm.getStorage().read(getParams().get(2));
-        
+
         vm.getStorage().writeToRegister(a, b & c);
     }
 
     @Override
     public String log() {
-        return vm.getPtr() + " - and (" + getParams().get(0) + ","
-                + getParams().get(1) + ","
-                + getParams().get(2) + ")";
+        return "and in register " + vm.getStorage().getRegisterNr(getParams().get(0)) + ": "
+                + vm.getStorage().read(getParams().get(1)) + " & "
+                + vm.getStorage().read(getParams().get(2));
     }
-    
+
 }

@@ -33,9 +33,9 @@ public class Ret implements Operation {
     @Override
     public void execute() {
     }
-    
+
     @Override
     public String log() {
-        return vm.getPtr() + " - ret";
+        return "ret - jump to " + vm.getStorage().peekAtStack();
     }
 }

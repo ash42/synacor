@@ -36,7 +36,8 @@ public class Push implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - push (" + getParams().get(0) + ")";
+        int a = vm.getStorage().read(getParams().get(0));
+        return "push to stack " + a;
     }
-    
+
 }

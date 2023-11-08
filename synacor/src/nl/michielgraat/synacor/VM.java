@@ -13,6 +13,7 @@ public class VM {
 
     private boolean halted = false;
     private boolean waitingForInput = false;
+    private boolean logCommands = false;
     private int ptr = 0;
 
     public VM(byte[] input) {
@@ -22,12 +23,17 @@ public class VM {
     }
 
     public void run() {
+        for (String cmd : Solution.commands) {
+            cmd.chars().forEach(c -> getStorage().addInput(c));
+        }
         Scanner scanner = new Scanner(System.in);
         while (!halted) {
             if (!waitingForInput) {
                 int opcode = storage.readFromMemory(ptr);
                 Operation o = OperationFactory.getOperation(opcode, this);
-                // System.out.println(o.log());
+                if (logCommands) {
+                    System.out.println(ptr + " - " + o.log());
+                }
                 o.execute();
                 setPtrPos(o.getPtrIncr());
             } else {
@@ -68,8 +74,16 @@ public class VM {
     private void readInput(Scanner scanner) {
         System.out.print("> ");
         String input = scanner.nextLine();
-        input += "\n";
-        input.chars().forEach(c -> getStorage().addInput(c));
+        if (input.equals("quit") || input.equals("exit")) {
+            halt();
+        } else if (input.equals("log")) {
+            logCommands = true;
+        } else if (input.equals("nolog")) {
+            logCommands = false;
+        } else {
+            input += "\n";
+            input.chars().forEach(c -> getStorage().addInput(c));
+        }
     }
 
     public Storage getStorage() {

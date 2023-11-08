@@ -37,7 +37,9 @@ public class Wmem implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - wmem (" + getParams().get(0) + ","
-                + getParams().get(1) + ")";
+        int a = vm.getStorage().read(getParams().get(0));
+        int b = vm.getStorage().read(getParams().get(1));
+        return "wmem to register " + vm.getStorage().getRegisterNr(a) + ": " + b;
+
     }
 }

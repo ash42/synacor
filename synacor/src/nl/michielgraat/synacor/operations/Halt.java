@@ -35,7 +35,7 @@ public class Halt implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - halt";
+        return "halt";
     }
 
 }

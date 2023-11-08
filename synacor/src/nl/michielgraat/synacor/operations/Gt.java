@@ -34,15 +34,16 @@ public class Gt implements Operation {
         int a = getParams().get(0);
         int b = vm.getStorage().read(getParams().get(1));
         int c = vm.getStorage().read(getParams().get(2));
-        
+
         vm.getStorage().writeToRegister(a, b > c ? 1 : 0);
     }
 
     @Override
     public String log() {
-        return vm.getPtr() + " - gt (" + getParams().get(0) + ","
-                + getParams().get(1) + ","
-                + getParams().get(2) + ")";
+        int a = getParams().get(0);
+        int b = vm.getStorage().read(getParams().get(1));
+        int c = vm.getStorage().read(getParams().get(2));
+        return "gt - write " + (b > c ? 1 : 0) + " to register " + vm.getStorage().getRegisterNr(a);
     }
-    
+
 }

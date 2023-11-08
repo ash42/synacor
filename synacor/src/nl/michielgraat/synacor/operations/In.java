@@ -45,7 +45,8 @@ public class In implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - in (" + getParams().get(0) + ")";
+        return "in - write " + (char) vm.getStorage().peekInput() + " to register "
+                + vm.getStorage().getRegisterNr(getParams().get(0));
     }
-   
+
 }

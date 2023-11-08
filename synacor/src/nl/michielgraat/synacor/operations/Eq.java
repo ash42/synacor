@@ -34,15 +34,15 @@ public class Eq implements Operation {
         int a = getParams().get(0);
         int b = vm.getStorage().read(getParams().get(1));
         int c = vm.getStorage().read(getParams().get(2));
-        
+
         vm.getStorage().writeToRegister(a, b == c ? 1 : 0);
     }
 
     @Override
     public String log() {
-        return vm.getPtr() + " - eq (" + getParams().get(0) + ","
-                + getParams().get(1) + ","
-                + getParams().get(2) + ")";
+        return "eq in register " + vm.getStorage().getRegisterNr(getParams().get(0)) + ": "
+                + vm.getStorage().read(getParams().get(1)) + " == "
+                + vm.getStorage().read(getParams().get(2));
     }
-    
+
 }

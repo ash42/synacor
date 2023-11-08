@@ -26,7 +26,7 @@ public class Jt implements Operation {
         }
     }
 
-     @Override
+    @Override
     public List<Integer> getParams() {
         int ptr = vm.getPtr();
         return List.of(vm.getStorage().readFromMemory(ptr + 1), vm.getStorage().readFromMemory(ptr + 2));
@@ -43,8 +43,11 @@ public class Jt implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - jt (" + getParams().get(0) + ","
-                + getParams().get(1) + ")";
+        int ptr = vm.getPtr();
+        int a = vm.getStorage().read(getParams().get(0));
+        int b = vm.getStorage().read(getParams().get(1));
+        return "jf - " + (a != 0 ? "jump" : "do not jump") + " to "
+                + Math.floorMod(b - ptr, vm.getStorage().getMemorySize());
     }
 
 }

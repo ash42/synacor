@@ -43,8 +43,11 @@ public class Jf implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - jf (" + getParams().get(0) + ","
-                + getParams().get(1) + ")";
+        int ptr = vm.getPtr();
+        int a = vm.getStorage().read(getParams().get(0));
+        int b = vm.getStorage().read(getParams().get(1));
+        return "jf - " + (a == 0 ? "jump" : "do not jump") + " to "
+                + Math.floorMod(b - ptr, vm.getStorage().getMemorySize());
     }
 
 }

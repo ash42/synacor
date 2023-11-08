@@ -19,14 +19,14 @@ public class Out implements Operation {
 
     @Override
     public List<Integer> getParams() {
-        return List.of(vm.getStorage().readFromMemory(vm.getPtr()+1));
+        return List.of(vm.getStorage().readFromMemory(vm.getPtr() + 1));
     }
 
     @Override
     public int getOpCode() {
         return 19;
     }
-    
+
     @Override
     public void execute() {
         int param = getParams().get(0);
@@ -35,6 +35,7 @@ public class Out implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - out (" + getParams().get(0) + ")";
-    }  
+        int param = getParams().get(0);
+        return "out " + param + " (" + (char) vm.getStorage().read(param) + ")";
+    }
 }

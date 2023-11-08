@@ -24,7 +24,6 @@ public class Mod implements Operation {
                 vm.getStorage().readFromMemory(ptr + 3));
     }
 
-
     @Override
     public int getOpCode() {
         return 11;
@@ -41,9 +40,9 @@ public class Mod implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - mult (" + getParams().get(0) + ","
-                + getParams().get(1) + ","
-                + getParams().get(2) + ")";
+        return "mod in register " + vm.getStorage().getRegisterNr(getParams().get(0)) + ": "
+                + vm.getStorage().read(getParams().get(1)) + " % "
+                + vm.getStorage().read(getParams().get(2));
     }
-    
+
 }

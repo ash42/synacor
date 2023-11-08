@@ -32,13 +32,14 @@ public class Set implements Operation {
     public void execute() {
         int a = getParams().get(0);
         int b = vm.getStorage().read(getParams().get(1));
-        vm.getStorage().writeToRegister(a,b);
+        vm.getStorage().writeToRegister(a, b);
     }
 
     @Override
     public String log() {
-        return vm.getPtr() + " - set (" + getParams().get(0) + ","
-                + getParams().get(1) + ")";
+        int a = getParams().get(0);
+        int b = vm.getStorage().read(getParams().get(1));
+        return "set to register " + vm.getStorage().getRegisterNr(a) + ": " + b;
     }
-    
+
 }

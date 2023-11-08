@@ -40,9 +40,9 @@ public class Add implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - add (" + getParams().get(0) + ","
-                + getParams().get(1) + ","
-                + getParams().get(2) + ")";
+        return "add in register " + vm.getStorage().getRegisterNr(getParams().get(0)) + ": "
+                + vm.getStorage().read(getParams().get(1)) + " + "
+                + vm.getStorage().read(getParams().get(2));
     }
 
 }

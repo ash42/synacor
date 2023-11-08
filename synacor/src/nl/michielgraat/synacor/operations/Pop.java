@@ -37,7 +37,8 @@ public class Pop implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - pop (" + getParams().get(0) + ")";
+        return "pop - write to register " + vm.getStorage().getRegisterNr(getParams().get(0)) + " "
+                + vm.getStorage().peekAtStack();
     }
 
 }

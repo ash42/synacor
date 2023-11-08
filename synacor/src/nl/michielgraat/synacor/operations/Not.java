@@ -37,7 +37,8 @@ public class Not implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - not (" + getParams().get(0) + ","
-                + getParams().get(1) + ")";
+        int b = vm.getStorage().read(getParams().get(1));
+        return "not in register " + vm.getStorage().getRegisterNr(getParams().get(0)) + ": " + b + "("
+                + (Math.floorMod(~b, vm.getStorage().getMemorySize())) + ")";
     }
 }

@@ -34,7 +34,7 @@ public class Noop implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - noop";
+        return "noop";
     }
 
 }

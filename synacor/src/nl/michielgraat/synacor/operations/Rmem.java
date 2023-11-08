@@ -38,7 +38,8 @@ public class Rmem implements Operation {
 
     @Override
     public String log() {
-        return vm.getPtr() + " - rmem (" + getParams().get(0) + ","
-                + getParams().get(1) + ")";
+        int a = getParams().get(0);
+        int b = vm.getStorage().read(getParams().get(1));
+        return "rmem to register " + vm.getStorage().getRegisterNr(a) + ": " + b;
     }
 }
